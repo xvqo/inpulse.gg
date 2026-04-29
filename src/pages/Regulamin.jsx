@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { HiArrowLeft, HiChevronDown, HiChevronUp } from 'react-icons/hi';
-import { FaDiscord, FaInstagram, FaYoutube, FaTiktok } from 'react-icons/fa';
 import { MdOutlineChangeCircle } from 'react-icons/md';
+import Footer from '../components/Footer';
 import styles from './Regulamin.module.css';
 
 /* ── Data ─────────────────────────────────────────────── */
@@ -116,18 +116,6 @@ const changelog = [
   },
 ];
 
-const footerLinks = [
-  { heading: 'Serwer',      links: [{ label: 'Regulamin', href: '/regulamin' }, { label: 'FAQ', href: '/#faq' }] },
-  { heading: 'Sklep',       links: [{ label: 'VIP', href: '#sklep' }, { label: 'Pakiety', href: '#sklep' }] },
-  { heading: 'Społeczność', links: [{ label: 'Discord', href: 'https://discord.gg/inpulse' }, { label: 'Galeria', href: '/#gallery' }] },
-];
-
-const socials = [
-  { Icon: FaDiscord,  href: 'https://discord.gg/inpulse', label: 'Discord' },
-  { Icon: FaInstagram, href: '#', label: 'Instagram' },
-  { Icon: FaYoutube,  href: '#', label: 'YouTube' },
-  { Icon: FaTiktok,   href: '#', label: 'TikTok' },
-];
 
 /* ── Changelog widget ─────────────────────────────────── */
 function ChangelogWidget() {
@@ -340,48 +328,7 @@ export default function Regulamin() {
         </main>
       </div>
 
-      {/* Footer — identical style to main page */}
-      <footer className={styles.footer}>
-        <div className={styles.footerLine} />
-        <div className={styles.footerInner}>
-          <div className={styles.footerTop}>
-            <div className={styles.footerBrand}>
-              <Link to="/" className={styles.footerLogo}>
-                <span className={styles.logoAccent}>IN</span>PULSE
-              </Link>
-              <p className={styles.footerTagline}>
-                Najlepszy serwer FiveM Roleplay w Polsce.<br />Twoja historia zaczyna się tutaj.
-              </p>
-              <div className={styles.socials}>
-                {socials.map(({ Icon, href, label }) => (
-                  <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                    aria-label={label} className={styles.socialIcon}>
-                    <Icon size={18} />
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div className={styles.footerLinks}>
-              {footerLinks.map((col) => (
-                <div key={col.heading} className={styles.footerCol}>
-                  <h4 className={styles.footerColHead}>{col.heading}</h4>
-                  <ul className={styles.footerColList}>
-                    {col.links.map((l) => (
-                      <li key={l.label}>
-                        <a href={l.href} className={styles.footerColLink}>{l.label}</a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className={styles.footerBottom}>
-            <span>© {new Date().getFullYear()} Inpulse. Wszelkie prawa zastrzeżone.</span>
-            <span className={styles.footerBottomRight}>Stworzone z pasją dla społeczności FiveM</span>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       <ChangelogWidget />
     </div>
