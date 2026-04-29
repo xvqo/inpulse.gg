@@ -1,0 +1,161 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: background 0.3s, box-shadow 0.3s, backdrop-filter 0.3s;
+}
+
+.scrolled {
+  background: rgba(10, 10, 15, 0.88);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(236, 73, 78, 0.12);
+}
+
+.inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 64px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #f0f0f5;
+  text-transform: uppercase;
+}
+
+.logoAccent {
+  color: #ec494e;
+}
+
+.desktopLinks {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.navLink {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8888a0;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ec494e;
+  transition: width 0.25s;
+}
+
+.navLink:hover {
+  color: #f0f0f5;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.discordBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ec494e;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 22px;
+  border-radius: 8px;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.3px;
+}
+
+.discordBtn:hover {
+  background: #c73338;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(236, 73, 78, 0.4);
+}
+
+.burger {
+  display: none;
+  background: transparent;
+  color: #f0f0f5;
+  padding: 4px;
+}
+
+/* Mobile fullscreen menu */
+.mobileMenu {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 15, 0.98);
+  backdrop-filter: blur(24px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+  border-top: 1px solid rgba(236, 73, 78, 0.12);
+}
+
+.mobileLink {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #8888a0;
+  padding: 14px 0;
+  text-align: center;
+  transition: color 0.2s;
+  width: 100%;
+  text-align: center;
+}
+
+.mobileLink:hover {
+  color: #f0f0f5;
+}
+
+.mobileDiscord {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ec494e;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 36px;
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.mobileDiscord:hover {
+  background: #c73338;
+}
+
+@media (max-width: 900px) {
+  .inner { padding: 0 32px; }
+  .desktopLinks { display: none; }
+  .burger { display: block; }
+}
+
+@media (max-width: 560px) {
+  .inner { padding: 0 20px; }
+}

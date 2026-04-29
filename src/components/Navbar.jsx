@@ -1,0 +1,111 @@
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiMenu, FiX } from 'react-icons/fi';
+import { FaDiscord } from 'react-icons/fa';
+import styles from './Navbar.module.css';
+
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
+  return (
+    <motion.nav
+      className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+    >
+      <div className={styles.inner}>
+        <Link to="/" className={styles.logo}>
+          <span className={styles.logoAccent}>IN</span>PULSE
+        </Link>
+
+        <div className={styles.desktopLinks}>
+          <Link to="/regulamin" className={styles.navLink}>Regulamin</Link>
+          <a href="#sklep" className={styles.navLink}>Sklep</a>
+          <a
+            href="https://discord.gg/inpulse"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.discordBtn}
+          >
+            <FaDiscord size={18} />
+            Discord
+          </a>
+        </div>
+
+        <button
+          className={styles.burger}
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label="Menu"
+        >
+          {menuOpen ? <FiX size={26} /> : <FiMenu size={26} />}
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className={styles.mobileMenu}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 }}
+            >
+              <Link
+                to="/regulamin"
+                className={styles.mobileLink}
+                onClick={() => setMenuOpen(false)}
+              >
+                Regulamin
+              </Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              <a
+                href="#sklep"
+                className={styles.mobileLink}
+                onClick={() => setMenuOpen(false)}
+              >
+                Sklep
+              </a>
+            </motion.div>
+            <motion.a
+              href="https://discord.gg/inpulse"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.mobileDiscord}
+              onClick={() => setMenuOpen(false)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.17 }}
+            >
+              <FaDiscord size={20} />
+              Dołącz do Discord
+            </motion.a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
+  );
+}
