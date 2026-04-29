@@ -11,7 +11,7 @@ import Regulamin from './pages/Regulamin';
 import CinematicIntro from './components/CinematicIntro';
 
 function Home() {
-  const [introDone, setIntroDone] = useState(false);
+  const [, setIntroDone] = useState(false);
 
   return (
     <>
