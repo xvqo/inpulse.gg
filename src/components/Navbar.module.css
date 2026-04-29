@@ -98,6 +98,10 @@
 
 .burger {
   display: none;
+  position: fixed;
+  top: 12px;
+  right: 20px;
+  z-index: 9000;
   background: transparent;
   color: #f0f0f5;
   padding: 10px;
@@ -108,8 +112,6 @@
   cursor: pointer;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  position: relative;
-  z-index: 501;
 }
 
 /* Mobile fullscreen menu */
@@ -119,7 +121,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 499;
+  z-index: 8999;
   background: rgba(10, 10, 15, 0.98);
   backdrop-filter: blur(24px);
   display: flex;
@@ -170,6 +172,10 @@
   .inner { padding: 0 32px; }
   .desktopLinks { display: none; }
   .burger { display: flex; }
+}
+
+@media (min-width: 901px) {
+  .burger { display: none !important; }
 }
 
 @media (max-width: 560px) {
