@@ -1,24 +1,22 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './CinematicIntro.module.css';
 
 const EASE = [0.76, 0, 0.24, 1];
 
+let hasPlayed = false;
+
 export default function CinematicIntro({ onComplete }) {
-  const [phase, setPhase] = useState(0);
-  const started = useRef(false);
+  const [phase, setPhase] = useState(hasPlayed ? 3 : 0);
 
   useEffect(() => {
-    if (started.current) return;
-    started.current = true;
+    if (hasPlayed) { onComplete?.(); return; }
+    hasPlayed = true;
 
     const t0 = setTimeout(() => setPhase(1), 350);
     const t1 = setTimeout(() => setPhase(2), 2700);
     const t2 = setTimeout(() => { setPhase(3); onComplete?.(); }, 3700);
-    return () => {
-      [t0, t1, t2].forEach(clearTimeout);
-      started.current = false;
-    };
+    return () => [t0, t1, t2].forEach(clearTimeout);
   }, [onComplete]);
 
   if (phase === 3) return null;
