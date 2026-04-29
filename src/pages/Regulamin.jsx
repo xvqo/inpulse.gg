@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { HiArrowLeft, HiChevronDown, HiChevronUp } from 'react-icons/hi';
 import { MdOutlineChangeCircle } from 'react-icons/md';
+import { FaDiscord } from 'react-icons/fa';
 import Footer from '../components/Footer';
 import styles from './Regulamin.module.css';
 
