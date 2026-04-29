@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { FaDiscord } from 'react-icons/fa';
 import styles from './Navbar.module.css';
@@ -8,6 +8,7 @@ import styles from './Navbar.module.css';
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -20,17 +21,18 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
+  const goHome = (e) => {
+    e.preventDefault();
+    navigate('/');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <motion.nav
-      className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-    >
+    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.inner}>
-        <Link to="/" className={styles.logo}>
+        <a href="/" onClick={goHome} className={styles.logo}>
           <span className={styles.logoAccent}>IN</span>PULSE
-        </Link>
+        </a>
 
         <div className={styles.desktopLinks}>
           <Link to="/regulamin" className={styles.navLink}>Regulamin</Link>
@@ -55,7 +57,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {menuOpen && (
           <motion.div
             className={styles.mobileMenu}
@@ -106,6 +108,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 }
