@@ -94,7 +94,16 @@
   display: none;
   background: transparent;
   color: #f0f0f5;
-  padding: 4px;
+  padding: 10px;
+  min-width: 48px;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  z-index: 501;
 }
 
 /* Mobile fullscreen menu */
@@ -154,7 +163,7 @@
 @media (max-width: 900px) {
   .inner { padding: 0 32px; }
   .desktopLinks { display: none; }
-  .burger { display: block; }
+  .burger { display: flex; }
 }
 
 @media (max-width: 560px) {
