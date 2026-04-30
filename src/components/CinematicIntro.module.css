@@ -11,7 +11,7 @@
 .barBottom {
   position: fixed;
   left: 0; right: 0;
-  background: #000;
+  background: #050208;
   z-index: 9999;
 }
 
@@ -66,4 +66,26 @@
   letter-spacing: 6px;
   text-transform: uppercase;
   color: rgba(240, 240, 245, 0.4);
+}
+
+.skipBtn {
+  position: fixed;
+  bottom: 28px;
+  right: 32px;
+  z-index: 10001;
+  background: transparent;
+  border: 1px solid rgba(240, 240, 245, 0.2);
+  color: rgba(240, 240, 245, 0.5);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.skipBtn:hover {
+  color: rgba(240, 240, 245, 0.9);
+  border-color: rgba(240, 240, 245, 0.4);
 }

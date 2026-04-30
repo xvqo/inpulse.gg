@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './CinematicIntro.module.css';
 
@@ -8,15 +8,25 @@ let hasPlayed = false;
 
 export default function CinematicIntro({ onComplete }) {
   const [phase, setPhase] = useState(hasPlayed ? 3 : 0);
+  const timers = useRef([]);
+
+  const skip = () => {
+    timers.current.forEach(clearTimeout);
+    hasPlayed = true;
+    setPhase(3);
+    onComplete?.();
+  };
 
   useEffect(() => {
     if (hasPlayed) { onComplete?.(); return; }
     hasPlayed = true;
 
-    const t0 = setTimeout(() => setPhase(1), 350);
-    const t1 = setTimeout(() => setPhase(2), 2700);
-    const t2 = setTimeout(() => { setPhase(3); onComplete?.(); }, 3700);
-    return () => [t0, t1, t2].forEach(clearTimeout);
+    timers.current = [
+      setTimeout(() => setPhase(1), 350),
+      setTimeout(() => setPhase(2), 2700),
+      setTimeout(() => { setPhase(3); onComplete?.(); }, 3700),
+    ];
+    return () => timers.current.forEach(clearTimeout);
   }, [onComplete]);
 
   if (phase === 3) return null;
@@ -80,6 +90,16 @@ export default function CinematicIntro({ onComplete }) {
         animate={barAnim(false)}
         transition={{ duration: 0.9, ease: EASE }}
       />
+
+      <motion.button
+        className={styles.skipBtn}
+        onClick={skip}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.4 }}
+      >
+        Pomiń
+      </motion.button>
     </>
   );
 }

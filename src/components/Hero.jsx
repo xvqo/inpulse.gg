@@ -41,30 +41,12 @@ function PlayersCard() {
   );
 }
 
-const particles = Array.from({ length: 14 }, (_, i) => ({
-  id: i,
-  left: `${(i * 53 + 11) % 100}%`,
-  top: `${(i * 37 + 9) % 100}%`,
-  size: ((i * 7 + 1) % 3) + 1,
-  opacity: ((i * 13 + 5) % 5) * 0.06 + 0.05,
-  duration: ((i * 3 + 3) % 5) + 3,
-  delay: ((i * 11) % 6),
-}));
-
 export default function Hero() {
   return (
     <section id="home" className={styles.hero}>
       {/* Backgrounds */}
       <div className={styles.blobLeft} />
       <div className={styles.blobRight} />
-      <div className={styles.particles}>
-        {particles.map((p) => (
-          <motion.div key={p.id} className={styles.particle}
-            style={{ left: p.left, top: p.top, width: p.size, height: p.size, opacity: p.opacity }}
-            animate={{ y: [0, -22, 0], opacity: [p.opacity, p.opacity * 4, p.opacity] }}
-            transition={{ duration: p.duration, repeat: Infinity, delay: p.delay, ease: 'easeInOut' }} />
-        ))}
-      </div>
 
       {/* Character image — absolute, behind grid */}
       <motion.div className={styles.charWrap}
@@ -82,7 +64,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.15 }}>
             <span className={styles.badgeDot} />
-            Serwer aktywny — dołącz teraz
+            Serwer aktywny: dołącz teraz
           </motion.div>
 
           <motion.h1 className={styles.title}
@@ -106,6 +88,7 @@ export default function Hero() {
               className={styles.btnDiscord}>
               <FaDiscord size={19} />
               Dołącz do Discord
+
             </a>
           </motion.div>
 
@@ -119,7 +102,7 @@ export default function Hero() {
       {/* Bottom section fade */}
       <div className={styles.bottomFade} />
 
-      <motion.a href="#faq" className={styles.scrollDown}
+      <motion.a href="#gallery" className={styles.scrollDown}
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}>
         <HiArrowDown size={20} />

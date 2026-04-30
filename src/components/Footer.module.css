@@ -110,6 +110,13 @@
   color: #ec494e;
 }
 
+.colLinkDisabled {
+  font-size: 14px;
+  color: rgba(136, 136, 160, 0.3);
+  cursor: default;
+  user-select: none;
+}
+
 .bottom {
   display: flex;
   align-items: center;

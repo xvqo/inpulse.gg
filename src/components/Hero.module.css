@@ -25,8 +25,6 @@
   background: radial-gradient(circle, rgba(236,73,78,0.05) 0%, transparent 65%);
   pointer-events: none; z-index: 0;
 }
-.particles { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
-.particle { position: absolute; background: #ec494e; border-radius: 50%; }
 
 /* ── Two-column grid ────────────────────────────────── */
 .grid {
@@ -102,18 +100,18 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: rgba(236,73,78,0.08);
-  border: 1px solid rgba(236,73,78,0.25);
-  color: #f0f0f5;
+  background: #5865F2;
+  border: 1px solid transparent;
+  color: #fff;
   font-size: 15px; font-weight: 600;
   padding: 14px 32px;
   border-radius: 10px;
-  transition: background .2s, transform .2s, border-color .2s;
+  transition: background .2s, transform .2s, box-shadow .2s;
 }
 .btnDiscord:hover {
-  background: rgba(236,73,78,0.15);
-  border-color: rgba(236,73,78,0.5);
+  background: #4752c4;
   transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(88,101,242,0.4);
 }
 
 /* Stats */
@@ -140,7 +138,7 @@
 }
 .statMax { font-size: 20px; color: rgba(236,73,78,0.4); }
 .statLabel {
-  font-size: 11px; color: #8888a0;
+  font-size: 12px; color: #8888a0;
   margin-top: 5px; display: block;
   white-space: nowrap;
 }

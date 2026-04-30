@@ -1,12 +1,9 @@
 import { motion } from 'framer-motion';
-import { FaDiscord, FaInstagram, FaYoutube, FaTiktok } from 'react-icons/fa';
+import { FaDiscord } from 'react-icons/fa';
 import styles from './Footer.module.css';
 
 const socials = [
   { Icon: FaDiscord, href: 'https://discord.gg/inpulse', label: 'Discord' },
-  { Icon: FaInstagram, href: '#', label: 'Instagram' },
-  { Icon: FaYoutube, href: '#', label: 'YouTube' },
-  { Icon: FaTiktok, href: '#', label: 'TikTok' },
 ];
 
 const footerLinks = [
@@ -14,16 +11,16 @@ const footerLinks = [
     heading: 'Serwer',
     links: [
       { label: 'Połącz', href: 'fivem://connect/inpulse.gg' },
-      { label: 'Regulamin', href: '#regulamin' },
+      { label: 'Regulamin', href: '/regulamin' },
       { label: 'FAQ', href: '#faq' },
     ],
   },
   {
     heading: 'Sklep',
     links: [
-      { label: 'VIP', href: '#sklep' },
-      { label: 'Pakiety', href: '#sklep' },
-      { label: 'Regulamin sklepu', href: '#sklep' },
+      { label: 'VIP', href: null },
+      { label: 'Pakiety', href: null },
+      { label: 'Regulamin sklepu', href: null },
     ],
   },
   {
@@ -76,9 +73,11 @@ export default function Footer() {
                 <ul className={styles.colList}>
                   {col.links.map((l) => (
                     <li key={l.label}>
-                      <a href={l.href} className={styles.colLink}>
-                        {l.label}
-                      </a>
+                      {l.href ? (
+                        <a href={l.href} className={styles.colLink}>{l.label}</a>
+                      ) : (
+                        <span className={styles.colLinkDisabled}>{l.label}</span>
+                      )}
                     </li>
                   ))}
                 </ul>

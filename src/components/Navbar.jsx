@@ -40,7 +40,7 @@ export default function Navbar() {
 
           <div className={styles.desktopLinks}>
             <Link to="/regulamin" className={styles.navLink}>Regulamin</Link>
-            <a href="#sklep" className={styles.navLink}>Sklep</a>
+            <span className={styles.navLinkSoon}>Sklep <span className={styles.soonTag}>wkrótce</span></span>
             <a
               href="https://discord.gg/inpulse"
               target="_blank"
@@ -88,9 +88,9 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                 >
-                  <a href="#sklep" className={styles.mobileLink} onClick={close}>
-                    Sklep
-                  </a>
+                  <span className={styles.mobileLinkSoon}>
+                    Sklep <span className={styles.soonTag}>wkrótce</span>
+                  </span>
                 </motion.div>
                 <motion.a
                   href="https://discord.gg/inpulse"

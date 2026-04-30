@@ -137,16 +137,14 @@
   font-size: 13px;
   color: #8888a0;
   padding: 8px 14px;
-  border-left: 2px solid rgba(255,255,255,0.06);
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
-  border-radius: 0 6px 6px 0;
+  border-radius: 6px;
   line-height: 1.4;
+  transition: color 0.2s, background 0.2s;
 }
-.tocLink:hover { color: #f0f0f5; border-color: rgba(236,73,78,0.3); }
+.tocLink:hover { color: #f0f0f5; background: rgba(255,255,255,0.04); }
 .tocActive {
   color: #ec494e !important;
-  border-color: #ec494e !important;
-  background: rgba(236,73,78,0.06);
+  background: rgba(236,73,78,0.08) !important;
 }
 
 /* ── Content ──────────────────────────────────────────── */
